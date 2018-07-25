@@ -1,12 +1,9 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.stqa.pft.addressbook.appmanager.AplicationManager;
-import ru.stqa.pft.addressbook.model.ContactData;
 
 /**
  * Created by Yulia on 16.07.2018.
@@ -14,17 +11,8 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class TestBase {
 
 
-  protected final AplicationManager app = new AplicationManager();
-  FirefoxDriver wd;
+  protected final AplicationManager app = new AplicationManager(BrowserType.CHROME);
 
-  public static boolean isAlertPresent(FirefoxDriver wd) {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
 
   @BeforeMethod
   public void setUp() throws Exception {
