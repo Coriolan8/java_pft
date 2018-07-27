@@ -12,7 +12,8 @@ public class ContactModificationTest extends TestBase {
   public void testContactModification() {
     app.getNavigationHelper().gotoHomePage();
     app.getContactHelper().startContactEdit();
-    app.getContactHelper().fillContactForm(new ContactData("Yulia", "Ver", "9(888)777-66-55", "prelest@gm.com"));
+    app.getContactHelper().fillContactForm(new ContactData("Yulia",
+            "Ver", "9(888)777-66-55", "prelest@gm.com", null), false);
     app.getContactHelper().submitContactEdit();
     app.getNavigationHelper().gotoHomePage();
   }
