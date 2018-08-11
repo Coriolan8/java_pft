@@ -30,7 +30,7 @@ public class AplicationManager {
 
 
   public void init() {
-     if (Objects.equals(browser, BrowserType.FIREFOX)) {
+    if (Objects.equals(browser, BrowserType.FIREFOX)) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("H:/Program Files (x86)/Mozilla Firefox/firefox.exe"));
     } else if (Objects.equals(browser, BrowserType.CHROME)) {
       wd = new ChromeDriver();
