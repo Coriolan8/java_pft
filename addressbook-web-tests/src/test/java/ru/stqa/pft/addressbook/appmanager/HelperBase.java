@@ -5,6 +5,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 /**
  * Created by Yulia on 18.07.2018.
  */
@@ -30,6 +32,13 @@ public class HelperBase {
 
     }
   }
+
+  protected void atach (By locator, File file) {
+      if (file != null) {
+        wd.findElement(locator).sendKeys(file.getAbsolutePath());
+      }
+
+    }
 
   public boolean isAlertPresent() {
     try {
