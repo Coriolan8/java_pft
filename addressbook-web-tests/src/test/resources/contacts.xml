@@ -1,0 +1,23 @@
+<list>
+  <contact>
+    <firstname>Yulia 0</firstname>
+    <lastname>Ver 0</lastname>
+    <homenumber>46354 0</homenumber>
+    <address>address 0</address>
+    <email1>sdljf@ldsjf.ru 0</email1>
+  </contact>
+  <contact>
+    <firstname>Yulia 1</firstname>
+    <lastname>Ver 1</lastname>
+    <homenumber>46354 1</homenumber>
+    <address>address 1</address>
+    <email1>sdljf@ldsjf.ru 1</email1>
+  </contact>
+  <contact>
+    <firstname>Yulia 2</firstname>
+    <lastname>Ver 2</lastname>
+    <homenumber>46354 2</homenumber>
+    <address>address 2</address>
+    <email1>sdljf@ldsjf.ru 2</email1>
+  </contact>
+</list>
