@@ -48,7 +48,7 @@ public class ContactDataGenerator {
     } else if (format.equals("json")) {
       saveAsJson(contacts, new File(file));
     } else {
-      System.out.println("Unrecognized format" + format);
+      System.out.println("Unrecognized format " + format);
     }
   }
 
