@@ -13,7 +13,8 @@ import ru.stqa.pft.addressbook.appmanager.AplicationManager;
 public class TestBase {
 
 
-  protected static final AplicationManager app = new AplicationManager(BrowserType.CHROME);
+  protected static final AplicationManager app
+          = new AplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
 
   @BeforeSuite
