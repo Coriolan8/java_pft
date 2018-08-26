@@ -55,7 +55,7 @@ public class ContactData {
   private String group;
   @Transient
   private String allEmails;
-
+  @Transient
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
@@ -63,7 +63,6 @@ public class ContactData {
   public int getId() {
     return id;
   }
-
 
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
@@ -110,7 +109,34 @@ public class ContactData {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+    if (homenumber != null ? !homenumber.equals(that.homenumber) : that.homenumber != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    return email1 != null ? email1.equals(that.email1) : that.email1 == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (homenumber != null ? homenumber.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (email1 != null ? email1.hashCode() : 0);
+    return result;
+  }
+
   public ContactData withAllPhones(String allPhones) {
+
     this.allPhones = allPhones;
     return this;
   }
@@ -193,23 +219,4 @@ public class ContactData {
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    return result;
-  }
 }

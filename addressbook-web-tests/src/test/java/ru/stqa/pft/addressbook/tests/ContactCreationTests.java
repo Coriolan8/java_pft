@@ -60,13 +60,13 @@ public class ContactCreationTests extends TestBase {
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
     app.goTo().HomePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
 //    File photo = new File("src/test/resources/tiger.jpg");
 //    ContactData contact = new ContactData().withFirstname("Yulia").withLastname("Ve")
 //            .withHomenumber("9(888)777-66-55").withMobilenumber("5643")
 //            .withWorknumber("54-654").withPhoto(photo).withEmail("prelest@gm.com");
     app.contact().create(contact);
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size() + 1);
 
 

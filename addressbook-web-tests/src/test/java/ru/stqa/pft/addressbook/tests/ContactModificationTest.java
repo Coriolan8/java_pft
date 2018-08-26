@@ -16,27 +16,28 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactModificationTest extends TestBase {
 
   @BeforeMethod public void ensurePreconditions(){
+    if (app.db().contacts().size() == 0){
     app.goTo().HomePage();
-    if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstname("Yulia2").withLastname("Ve")
+    app.contact().create(new ContactData().withFirstname("Yulia2").withLastname("Ve")
               .withHomenumber("9(888)777-66-55").withEmail("prelest@gm.com"));
     }
   }
 
   @Test
   public void testContactModification() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
+    app.goTo().HomePage();
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Yulia1")
-            .withLastname("Ver").withHomenumber("9(888)777-66-55").withEmail("prelest@gm.com");
+            .withLastname("Ver").withHomenumber("9(888)777-66-55").withEmail("prelest@gm.com").withAddress("524sladfjowerji");
     app.contact().modify(contact);
     app.goTo().HomePage();
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(modifiedContact);
     before.add(contact);
-    Assert.assertEquals(before, after);
+   Assert.assertEquals(before, after);
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 
