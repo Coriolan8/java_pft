@@ -8,11 +8,12 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-
+import ru.stqa.pft.addressbook.model.Groups;
 
 
 import java.io.BufferedReader;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
@@ -59,13 +60,15 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/tiger.jpg");
+    ContactData newcontact = new ContactData().withFirstname("Yulia").withLastname("Ve")
+            .withHomenumber("9(888)777-66-55").withMobilenumber("5643")
+            .withWorknumber("54-654").withPhoto(photo).withEmail("prelest@gm.com")
+            .inGroups(groups.iterator().next());
     app.goTo().HomePage();
     Contacts before = app.db().contacts();
-//    File photo = new File("src/test/resources/tiger.jpg");
-//    ContactData contact = new ContactData().withFirstname("Yulia").withLastname("Ve")
-//            .withHomenumber("9(888)777-66-55").withMobilenumber("5643")
-//            .withWorknumber("54-654").withPhoto(photo).withEmail("prelest@gm.com");
-    app.contact().create(contact);
+    app.contact().create(newcontact);
     Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size() + 1);
 
