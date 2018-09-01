@@ -58,17 +58,17 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContactsFromJson")
+  @Test (dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
     Groups groups = app.db().groups();
-    File photo = new File("src/test/resources/tiger.jpg");
-    ContactData newcontact = new ContactData().withFirstname("Yulia").withLastname("Ve")
-            .withHomenumber("9(888)777-66-55").withMobilenumber("5643")
-            .withWorknumber("54-654").withPhoto(photo).withEmail("prelest@gm.com")
-            .inGroups(groups.iterator().next());
+//    File photo = new File("src/test/resources/tiger.jpg");
+//    ContactData newcontact = new ContactData().withFirstname("Yulia").withLastname("Ve")
+//            .withHomenumber("9(888)777-66-55").withMobilenumber("5643")
+//            .withWorknumber("54-654").withPhoto(photo).withEmail("prelest@gm.com")
+//            .inGroups(groups.iterator().next());
     app.goTo().HomePage();
     Contacts before = app.db().contacts();
-    app.contact().create(newcontact);
+    app.contact().create(contact.inGroups(groups.iterator().next()));
     Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size() + 1);
 
