@@ -14,3 +14,11 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 *.log
+sandbox/.idea/modules/mantis-tests.iml
+sandbox/.idea/modules/mantis-tests_main.iml
+sandbox/.idea/modules.xml
+sandbox/.idea/modules/mantis-tests_test.iml
+sandbox/.idea/workspace.xml
+sandbox/.idea/modules.xml
+*.xml
+sandbox/.idea/compiler.xml
