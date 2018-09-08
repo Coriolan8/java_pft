@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import org.apache.http.client.fluent.Executor;
 import org.apache.http.message.BasicNameValuePair;
 import org.testng.annotations.Test;
 
@@ -16,10 +15,11 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by Yulia on 08.09.2018.
  */
-public class RestTests {
+public class RestTests extends TestBase{
 
   @Test
   public void testCreateIssue() throws IOException {
+    skipIfNotFixed(66);
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue Jy").withDescription("New test issue");
     int issueId = createIssue(newIssue);
@@ -27,6 +27,7 @@ public class RestTests {
     oldIssues.add(newIssue.withId(issueId));
     assertEquals(newIssues, oldIssues);
   }
+
 
   private Set<Issue> getIssues() throws IOException {
     String json = getExecutor().execute(org.apache.http.client.fluent.Request.Get("http://bugify.stqa.ru/api/issues.json?limit=1000"))
@@ -38,9 +39,9 @@ public class RestTests {
   }
 
 
-  private Executor getExecutor() {
-    return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
-  }
+//  private Executor getExecutor() {
+//    return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
+//  }
 
   private int createIssue(Issue newIssue) throws IOException {
     String json = getExecutor().execute(org.apache.http.client.fluent.Request.Post("http://bugify.stqa.ru/api/issues.json?limit=1000")
