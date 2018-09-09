@@ -55,7 +55,7 @@ public class AplicationManager {
     }else {
       DesiredCapabilities capabilities = new DesiredCapabilities();
       capabilities.setBrowserName(browser);
-      new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+     wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
